@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "Netpa Calendar Exporter",
+    "version": "1.0",
+    "description": "Tool to export the calendar from Netpa to a .ics file format",
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "128": "icon.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://netpa.novasbe.pt/netpa/DIFTasks*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}
