@@ -27,14 +27,6 @@ function scrapePageForEvents() {
             }
             if (column.querySelector('[name=descriptionDiv]').textContent.trim() !== "") {
                 overlap_counter[weekday_counter] = overlap_counter[weekday_counter] + column.getAttribute("rowspan");
-                //create event and add it to the calendar
-                //logging
-                console.log("course: " + extractCourseName(column));
-                console.log("shift: " + extractShift(column));
-                console.log("classroom: " + extractClassrom(column));
-                console.log("start: " + extractStartTime(row, weekday_counter));
-                console.log("end: " + extractEndTime(row, weekday_counter, column.getAttribute("rowspan")));
-                console.log("-------------------")
                 // add event to response object
                 week_events.push({
                     course: extractCourseName(column),
