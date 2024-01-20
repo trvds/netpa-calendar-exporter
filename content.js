@@ -1,6 +1,4 @@
 // content.js
-console.log("content.js loaded outside");
-
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.action === 'scrape_week') {
         const weekEventsData = scrapePageForEvents();
