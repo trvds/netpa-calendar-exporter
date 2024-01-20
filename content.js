@@ -100,7 +100,6 @@ function getNextURL() {
     }
     dateToShow = document.querySelector(".semanaseguinte").querySelector('a').getAttribute("onclick").split("'")[1];
     var extraParams = '';
-    console.log("next week is: " + dateToShow);
     try {
         extraParams = otherTimeTableParams();
     } catch (err) {
