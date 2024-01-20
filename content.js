@@ -52,10 +52,20 @@ function extractCourseName(column) {
 }
 
 function extractClassrom(column) {
-    return column.querySelector('[name=descriptionDiv]').innerHTML.split('<br>')[1].split('-')[0].trim();
+    // handle "D -1XX" classrooms
+    if (column.querySelector('[name=descriptionDiv]').innerHTML.split('<br>')[1].split('-')[0].trim().slice(-1) == "D") {
+        return column.querySelector('[name=descriptionDiv]').innerHTML.split('<br>')[1].split('-')[0].trim().split(' ')[1] + " -" + column.querySelector('[name=descriptionDiv]').innerHTML.split('<br>')[1].split('-')[1].trim();
+    }
+    // for normal classrooms
+    return column.querySelector('[name=descriptionDiv]').innerHTML.split('<br>')[1].split('-')[0].trim().split(' ')[1];
 }
 
 function extractShift(column) {
+    // handle "D -1XX" classrooms
+    if (column.querySelector('[name=descriptionDiv]').innerHTML.split('<br>')[1].split('-')[0].trim().slice(-1) == "D") {
+        return column.querySelector('[name=descriptionDiv]').innerHTML.split('<br>')[1].split('-')[2].trim();
+    }
+    // for normal classrooms
     return column.querySelector('[name=descriptionDiv]').innerHTML.split('<br>')[1].split('-')[1].trim();
 }
 
