@@ -12,10 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const cal = ics();
         let currentTabId;
 
-        // Hide the button
-        document.getElementById('runScript').style.display = 'none';
-        // Show the loading animation
-        document.getElementById('loading').style.display = 'block';
+        hideButton();
 
         // Start scraping weeks
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -24,28 +21,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then((eventCount) => {
                     if (eventCount > 0) {
                         cal.download("netpa_calendar", ".ics");
-
                         // Show a success message after a delay
-                        setTimeout(() => {
-                            document.getElementById('conclusion').innerText = 'Export completed! Check your downloads folder for the file.';
-                            document.getElementById('conclusion').style.display = 'block';
-                            document.getElementById('runScript').style.display = 'block';
-                            document.getElementById('loading').style.display = 'none';
-                        }, 2000);
+                        successMessage();
+                        setTimeout(openTab, 4000, "https://instagram.com/techclubatnova");
                     } else {
                         // Show a message indicating no events to download
-                        setTimeout(() => {
-                            showMessage('No events found to export.');
-                            // Hide the loading animation and show the button
-                            document.getElementById('runScript').style.display = 'block';
-                            document.getElementById('loading').style.display = 'none';
-                        }, 2000);
+                        noEventsMessage();
                     }
                 })
                 .catch((error) => {
                     console.error("Error:", error);
                     // Show an error message (you can customize this part)
-                    showMessage('An error occurred! Please try again.');
+                    errorMessage();
                 });
         });
 
@@ -104,10 +91,41 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        function showMessage(message) {
-            // Display the conclusion message
-            document.getElementById('conclusion').innerText = message;
+        function openTab(url) {
+            // Open a new tab with the Instagram page
+            chrome.tabs.create({ url: url }, function (tab) {
+                console.log('Tab opened:', tab);
+
+                // Send a message to the background script indicating that the Instagram tab is open
+                chrome.runtime.sendMessage({ action: 'tabOpen', tabId: tab.id });
+            });
+        }
+
+        function successMessage() {
+            document.getElementById('conclusion').innerText = 'Export completed! Check your downloads folder for the file.\nFollow us on Instagram @techclubatnova!';
             document.getElementById('conclusion').style.display = 'block';
+            showButton();
+        }
+
+        function noEventsMessage() {
+            document.getElementById('conclusion').innerText = 'No events found to export.';
+            document.getElementById('conclusion').style.display = 'block';
+            showButton();
+        }
+
+        function errorMessage() {
+            document.getElementById('conclusion').innerText = 'An error occurred. Please try again.';
+            document.getElementById('conclusion').style.display = 'block';
+        }
+
+        function hideButton() {
+            document.getElementById('runScript').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function showButton() {
+            document.getElementById('runScript').style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
         }
     });
 });
