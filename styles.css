@@ -27,6 +27,12 @@ main {
     padding: 20px;
 }
 
+button,
+label,
+input {
+    align-items: center;
+}
+
 button {
     background-color: #4285f4;
     color: #ffffff;
@@ -34,13 +40,14 @@ button {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    margin-top: 20px;
 }
 
-#loading {
+#loading,
+#conclusion {
     display: none;
     align-items: center;
     margin-top: 20px;
+    text-align: center;
 }
 
 .spinner {
@@ -62,14 +69,13 @@ button {
     }
 }
 
-#conclusion {
-    display: none;
-    margin-top: 20px;
-}
-
 footer {
     background-color: #4285f4;
     color: #ffffff;
     padding: 10px;
     text-align: right;
+}
+
+.hidden {
+    display: none;
 }
