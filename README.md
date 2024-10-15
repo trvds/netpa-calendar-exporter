@@ -1,12 +1,8 @@
 # Netpa Calendar Exporter
 
   This is a Google Chrome extension that allows you to export your Netpa schedule into an .ics file, which you can import into your favorite calendar app, such as Google Calendar, iCalendar, etc...
-  
-  Developed by [Nova Tech Club](https://www.instagram.com/techclubatnova/?hl=en).
 
 ## Installation Steps:
-
-In the future, we plan to publish this extension on the Chrome Web Store. For now, you can install it manually by following these steps:
 
 1. **Download the Extension:**
    - Download the code by clicking on the green "Code" button and select "Download ZIP."
@@ -32,9 +28,9 @@ If you encounter any issues, bugs, or unexpected behavior, please [create an iss
 
 ## Contributing:
 
-We welcome contributions from anyone! If you have suggestions or new ideas please [create an issue](https://github.com/trvds/netpa-calendar-exporter/issues) to discuss them.
+Contributions are welcomed from anyone! If you have suggestions or new ideas please [create an issue](https://github.com/trvds/netpa-calendar-exporter/issues) to discuss them.
 
-If you want to contribute code, please fork the repository and submit a pull request. We will review your changes and merge them if they are relevant. 
+If you want to contribute code, please fork the repository and submit a pull request. Your changes will be reviewed and merged if they are relevant. 
 
 ## Acknowledgments:
 
